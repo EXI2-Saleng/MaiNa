@@ -26,12 +26,12 @@ public class MainActivity extends AppCompatActivity {
     MyDatabaseHelper myDB;
     ArrayList<String> movie_id, movie_name, movie_type, movie_runtime;
     CustomAdapter customAdapter;
-
+    int P=1;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-        int P=1;
+
         Intent i = getIntent();
         P = i.getIntExtra("score",1);
 
@@ -70,7 +70,11 @@ public class MainActivity extends AppCompatActivity {
     @Override
     protected void onActivityResult(int requestCode, int resultCode, @Nullable Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
-        if(requestCode == 1){
+        requestCode=P;
+        if(requestCode == 2){
+            recreate();
+        }
+       else if(requestCode == 99){
             recreate();
         }
     }

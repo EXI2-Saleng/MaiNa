@@ -4,6 +4,7 @@ import android.app.Activity;
 import android.content.Context;
 import android.content.Intent;
 import android.os.Build;
+import android.text.style.UpdateLayout;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -15,13 +16,18 @@ import androidx.annotation.NonNull;
 import androidx.annotation.RequiresApi;
 import androidx.recyclerview.widget.RecyclerView;
 
+
+import org.w3c.dom.Text;
+
 import java.util.ArrayList;
 
 public class CustomAdapter extends RecyclerView.Adapter<CustomAdapter.MyViewHolder> {
 
+
     private Context context;
     private Activity activity;
     private ArrayList movie_id, movie_name, movie_type, movie_runtime;
+    int N=0;
 
     CustomAdapter(Activity activity, Context context, ArrayList movie_id, ArrayList movie_name, ArrayList movie_type,
                   ArrayList movie_runtime){
@@ -74,17 +80,31 @@ public class CustomAdapter extends RecyclerView.Adapter<CustomAdapter.MyViewHold
         }
 
         //Recyclerview onClickListener
-        holder.mainLayout.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                Intent intent = new Intent(context, UpdateActivity.class);
-                intent.putExtra("id", String.valueOf(movie_id.get(position)));
-                intent.putExtra("name", String.valueOf(movie_name.get(position)));
-                intent.putExtra("type", String.valueOf(movie_type.get(position)));
-                intent.putExtra("runtime", String.valueOf(movie_runtime.get(position)));
-                activity.startActivityForResult(intent, 1);
-            }
-        });
+
+            holder.mainLayout.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View view) {
+                    Intent intent = new Intent(context, ReadOnly.class);
+                    intent.putExtra("id", String.valueOf(movie_id.get(position)));
+                    intent.putExtra("name", String.valueOf(movie_name.get(position)));
+                    intent.putExtra("type", String.valueOf(movie_type.get(position)));
+                    intent.putExtra("runtime", String.valueOf(movie_runtime.get(position)));
+                    activity.startActivityForResult(intent, 2);
+                }
+            });
+
+
+/*            holder.mainLayout.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View view) {
+                    Intent intent = new Intent(context, UpdateActivity.class);
+                    intent.putExtra("id", String.valueOf(movie_id.get(position)));
+                    intent.putExtra("name", String.valueOf(movie_name.get(position)));
+                    intent.putExtra("type", String.valueOf(movie_type.get(position)));
+                    intent.putExtra("runtime", String.valueOf(movie_runtime.get(position)));
+                    activity.startActivityForResult(intent, 99);
+                }
+            });*/
 
 
     }

@@ -10,6 +10,8 @@ import android.widget.Button;
 public class MainActivity2 extends AppCompatActivity {
 
     Button B_Admin,B_User;
+    int P = 0;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -20,7 +22,8 @@ public class MainActivity2 extends AppCompatActivity {
         B_User.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                int P = 0;
+                    P=2;
+
                 Intent intent = new Intent(MainActivity2.this, MainActivity.class);
                 intent.putExtra("score",P);
                 startActivity(intent);
@@ -29,11 +32,16 @@ public class MainActivity2 extends AppCompatActivity {
         B_Admin.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Intent intent = new Intent(MainActivity2.this, AddActivity.class);
+                P=99;
+
+                Intent intent = new Intent(MainActivity2.this, MainActivity.class);
+                intent.putExtra("score",P);
                 startActivity(intent);
             }
         });
 
 
+
     }
+
 }
